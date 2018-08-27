@@ -1,0 +1,36 @@
+.App {
+  display: flex;
+  font-weight: bold;
+  flex-direction: column;
+  text-align: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+header {
+  height: 20px;
+}
+
+.body-container {
+  display: flex;
+  flex: 1;
+}
+
+.map {
+  text-align: left;
+  background: deepskyblue;
+}
+
+.list {
+  background: gold;
+}
+
+@media all and (min-width: 600px) {
+  .aside { flex: 1 auto; }
+}
+
+@media all and (min-width: 800px) {
+  .map  { flex: 3 0px; }
+  .list { order: 1; } 
+  .map    { order: 2; }
+}
