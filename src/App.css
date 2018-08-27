@@ -7,26 +7,25 @@
   overflow: hidden; }
 
 header {
-  height: 20px; }
+  height: 60px;
+  display: flex;
+  align-items: center; }
 
 .body-container {
   display: flex;
   flex: 1; }
 
 .map {
-  text-align: left;
-  background: deepskyblue; }
+  flex: 1; }
 
 .list {
-  background: gold; }
-
-@media all and (min-width: 600px) {
-  .aside {
-    flex: 1 auto; } }
+  background: gold;
+  position: absolute;
+  width: 220px;
+  height: 100%;
+  z-index: -1; }
 
 @media all and (min-width: 800px) {
-  .map {
-    flex: 3 0px; }
   .list {
     order: 1; }
   .map {
