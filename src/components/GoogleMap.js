@@ -4,11 +4,11 @@ import GoogleMarker from './Marker.js'
 import './GoogleMap.scss'
 
 const LocationMap = withScriptjs(withGoogleMap((props) => {
-    const locations = props.places.map( place => <GoogleMarker
-        key={place.uid}
-        place={place}
-        location={{lat: place.lat, lng: place.lon}}
-    />);
+    // const locations = props.places.map( place => <GoogleMarker
+    //     key={place.uid}
+    //     place={place}
+    //     location={{lat: place.lat, lng: place.lon}}
+    // />);
 
     return (
         <GoogleMap
@@ -356,7 +356,7 @@ const LocationMap = withScriptjs(withGoogleMap((props) => {
             ]
         }}
         >
-          {locations}
+          {/* {locations} */}
         </GoogleMap>
     )
 }))

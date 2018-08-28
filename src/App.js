@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import GoogleMapContainer from './components/GoogleMap.js'
-import './App.css';
+import MapContainer from './components/MapContainer.js'
+import './App.css'
+import MenuIcon from "./images/menu.svg";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
         active: true,
+        locations: {
+
+        }
     };
   }
 
@@ -23,9 +27,9 @@ class App extends Component {
               className="logo-wrapper"
               onClick={this.toggleClass}
             >
-              <img src={require('./images/menu.svg')} alt="Open Menu"/>
+              <img src={MenuIcon} alt="Open Menu"/>
             </div>
-            <GoogleMapContainer />
+            <MapContainer />
           </article>
           <aside className="aside list">Aside 1</aside>
         </div>
