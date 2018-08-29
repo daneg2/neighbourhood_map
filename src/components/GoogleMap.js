@@ -1,14 +1,43 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap} from 'react-google-maps'
 import GoogleMarker from './Marker.js'
 import './GoogleMap.scss'
 
+// get location names passed down from app.js
+// need to find lat lng and info within withScripts
+// markers to be added in outside function after lat/lng has been populated
+// within withScripts, find lat lng
+
 const LocationMap = withScriptjs(withGoogleMap((props) => {
-    // const locations = props.places.map( place => <GoogleMarker
-    //     key={place.uid}
-    //     place={place}
-    //     location={{lat: place.lat, lng: place.lon}}
-    // />);
+
+    const google = window.google;
+    let geocoder = new google.maps.Geocoder();
+
+    const locationsLatLng = [];
+
+    props.locationsLatLng.map( location => {
+        geocoder.geocode(
+            { address: location.title }, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                let lat = results[0].geometry.location.lat()
+                let lng = results[0].geometry.location.lng()
+                var id = results[0].place_id
+
+                //to be replaced by function in component below
+                locationsLatLng.push(
+                    <GoogleMarker
+                    key={id}
+                    place={location.title}
+                    location={{lat: {lat}, lng: {lng}}}
+                    />
+                )
+               
+            } else {
+                window.alert('No luck finding that location - please try again!');
+            }
+            }
+        )
+    });
 
     return (
         <GoogleMap
@@ -356,10 +385,37 @@ const LocationMap = withScriptjs(withGoogleMap((props) => {
             ]
         }}
         >
-          {/* {locations} */}
+        {/* {console.log(JSON.parse(JSON.stringify(locationsLatLng)))}
+        {props.markers.map((marker)=> {
+            console.log('here')
+            return <GoogleMarker position={}/>
+        })} */}
         </GoogleMap>
     )
 }))
+
+class MyMap extends Component {
+    constructor (props) {
+        super(props)
+        this.state = {
+            markers: []
+        }
+    }
+
+    addToMarkers(newMarker){
+        this.setState({
+
+
+
+        })
+    }
+
+    render(){
+        return <LocationMap 
+            markers={this.state.markers}
+        />
+    }
+}
 
 export default LocationMap;
 

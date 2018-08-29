@@ -3,6 +3,8 @@ import MapContainer from './components/MapContainer.js'
 import './App.css'
 import MenuIcon from "./images/menu.svg";
 
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,21 +19,6 @@ class App extends Component {
           {title: 'Shenanigan’s Irish Pub, 18th Street Northwest, Washington, DC, USA'}
         ]
     };
-  }
-
-  componentDidMount = () => {
-    const locations = this.state.locations.map( location => {
-      var geocoder =  new window.google.maps.Geocoder();
-      geocoder.geocode(
-        { address: location.title }, function(results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            console.log(results)
-          } else {
-            window.alert('No luck finding that location - please try again!');
-          }
-        }
-      )
-    });
   }
  
   toggleClass = () => {
@@ -49,7 +36,9 @@ class App extends Component {
             >
               <img src={MenuIcon} alt="Open Menu"/>
             </div>
-            <MapContainer />
+            <MapContainer 
+              locations={this.state.locations}
+            />
           </article>
           <aside className="aside list">Aside 1</aside>
         </div>
