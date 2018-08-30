@@ -7,7 +7,7 @@ class GoogleMarker extends Component {
   render(){
     return(
         <Marker
-          position={this.props.latlng}
+          position={this.props.location}
           icon={MarkerIcon}
         >
         </Marker>
