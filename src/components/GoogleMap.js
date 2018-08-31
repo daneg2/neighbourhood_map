@@ -8,12 +8,17 @@ import './GoogleMap.scss'
 // markers to be added in outside function after lat/lng has been populated
 // within withScripts, find lat lng
 
+//location map is a stateless functional component with no render/lifecycle/constructor
+
+//called within mapcontainer which does have but can't pass anything
+
 const LocationMap = withScriptjs(withGoogleMap((props) => {
 
     const google = window.google;
     let geocoder = new google.maps.Geocoder();
 
     const locationsLatLng = [];
+    var toRender;
 
     props.locationsLatLng.map( location => {
         geocoder.geocode(
@@ -31,6 +36,9 @@ const LocationMap = withScriptjs(withGoogleMap((props) => {
                     location={{lat: {lat}, lng: {lng}}}
                     />
                 )
+                props.locationsLatLng.length === locationsLatLng.length ? toRender = true : toRender = false
+
+                console.log(toRender)
                
             } else {
                 window.alert('No luck finding that location - please try again!');
@@ -39,7 +47,11 @@ const LocationMap = withScriptjs(withGoogleMap((props) => {
         )
     });
 
+    console.log(props.locationsLatLng.length)
+    {console.log("here")}
+
     return (
+        toRender ?
         <GoogleMap
         defaultZoom={14}
         defaultCenter={{ lat: 38.9055139, lng: -77.0347769 }}
@@ -385,37 +397,13 @@ const LocationMap = withScriptjs(withGoogleMap((props) => {
             ]
         }}
         >
-        {/* {console.log(JSON.parse(JSON.stringify(locationsLatLng)))}
-        {props.markers.map((marker)=> {
-            console.log('here')
-            return <GoogleMarker position={}/>
-        })} */}
-        </GoogleMap>
+        <GoogleMarker 
+            location = {{lat: 38.9055139, lng: -77.0347769 }}
+        />
+        </GoogleMap> :
+        null
     )
 }))
-
-class MyMap extends Component {
-    constructor (props) {
-        super(props)
-        this.state = {
-            markers: []
-        }
-    }
-
-    addToMarkers(newMarker){
-        this.setState({
-
-
-
-        })
-    }
-
-    render(){
-        return <LocationMap 
-            markers={this.state.markers}
-        />
-    }
-}
 
 export default LocationMap;
 
