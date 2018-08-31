@@ -17,10 +17,7 @@ const LocationMap = withScriptjs(withGoogleMap((props) => {
     const google = window.google;
     let geocoder = new google.maps.Geocoder();
 
-    const locationsLatLng = [];
-    var toRender;
-
-    props.locationsLatLng.map( location => {
+    props.locationsArray.map( location => {
         geocoder.geocode(
             { address: location.title }, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
@@ -28,17 +25,24 @@ const LocationMap = withScriptjs(withGoogleMap((props) => {
                 let lng = results[0].geometry.location.lng()
                 var id = results[0].place_id
 
-                //to be replaced by function in component below
-                locationsLatLng.push(
-                    <GoogleMarker
-                    key={id}
-                    place={location.title}
-                    location={{lat: {lat}, lng: {lng}}}
-                    />
-                )
-                props.locationsLatLng.length === locationsLatLng.length ? toRender = true : toRender = false
+                var marker = {key: id, place: location.title, location:{lat: {lat}, lng: {lng}}}
 
-                console.log(toRender)
+                // var marker = <GoogleMarker
+                //      key={id}
+                //      place={location.title}
+                //     location={{lat: {lat}, lng: {lng}}}
+                // />
+
+                //to be replaced by function in component below
+                // locationsLatLng.push(
+                //     <GoogleMarker
+                //     key={id}
+                //     place={location.title}
+                //     location={{lat: {lat}, lng: {lng}}}
+                //     />
+                // )
+
+                props.addMarker(marker)
                
             } else {
                 window.alert('No luck finding that location - please try again!');
@@ -47,11 +51,9 @@ const LocationMap = withScriptjs(withGoogleMap((props) => {
         )
     });
 
-    console.log(props.locationsLatLng.length)
-    {console.log("here")}
+    
 
     return (
-        toRender ?
         <GoogleMap
         defaultZoom={14}
         defaultCenter={{ lat: 38.9055139, lng: -77.0347769 }}
@@ -400,10 +402,37 @@ const LocationMap = withScriptjs(withGoogleMap((props) => {
         <GoogleMarker 
             location = {{lat: 38.9055139, lng: -77.0347769 }}
         />
-        </GoogleMap> :
-        null
+        </GoogleMap>
     )
 }))
 
-export default LocationMap;
+class MyApp extends Component {  
+    constructor(props) {
+        super(props);
+        this.state = {
+            locationsLatLng: []
+        };
+    }
+
+    addMarker = (marker) => {
+        console.log(marker)
+        // this.setState({locationsLatLng: [...this.state.locationsLatLng, {marker}] })
+        // var newArray = this.state.locationsLatLng.concat(marker);
+        // console.log(newArray)
+        // this.setState({locationsLatLng: newArray})
+    }
+
+    render () {
+        return <LocationMap 
+            locationsArray = {this.props.locationsLatLng}
+            addMarker = {this.addMarker}
+            googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAhA-JVu5azNen7-xBfr3gMT9VVU1JybJk&libraries=geometry,drawing,places"
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={<div style={{ height: `100%` }} />}
+            mapElement={<div style={{ height: `100%` }} />}
+        />
+    }
+}
+
+export default MyApp
 
