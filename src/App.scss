@@ -7,6 +7,10 @@
   min-height: 100%;
 }
 
+body {
+  overflow: hidden;
+}
+
 .logo-wrapper {
   background: #fecf00;
   border-radius: 50%;
@@ -32,6 +36,7 @@
   box-shadow: 0 0 5px rgba(0,0,0,1);
   transform: translate3d(0,0,0);
   transition: transform .4s;
+  z-index: 2;
   .gmnoprint {
     display: none;
   }
@@ -45,6 +50,6 @@
   position: absolute;
   width: 220px;
   height: 100%;
-  z-index: -1;
+  z-index: 0;
 }
 

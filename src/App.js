@@ -79,6 +79,9 @@ class App extends Component {
                         clickable
                         ref={this.markerRef}
                     />
+                  // localGoogle.maps.event.addListener(marker, 'click', (function (marker) {
+                  //    console.log(marker)
+                  // }));
 
                     // fetch(`https://api.yelp.com/v3/businesses/${location.yelpId}`, {
                     //   method: 'GET',
@@ -133,7 +136,6 @@ class App extends Component {
           </article>
           <LocationsList
             markersArray={this.state.markersArray}
-            localGoogle={this.state.localGoogle}
             localGoogle={this.state.localGoogle}
           />
         </div>

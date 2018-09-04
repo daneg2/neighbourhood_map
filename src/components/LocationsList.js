@@ -10,9 +10,10 @@ class LocationsList extends Component {
                         return (
                             // <li key={location.title} onClick={() => {this.props.localGoogle.maps.event.trigger(location.marker, 'click');}}>           
                             <li key={location.title} onClick={() => {
-                                console.log(location.markerRef)
-                                console.log('here')
-                                location.markerRef.current.click()
+                                // console.log(location.markerRef)
+                                 console.log('here')
+                                 this.props.localGoogle.maps.event.trigger(location, 'click');
+                                // location.markerRef.current.click()
                                 }}>           
                                 {location.shortTitle}
                             </li>  
