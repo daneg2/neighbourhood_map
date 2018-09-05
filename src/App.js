@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import MapContainer from './components/GoogleMap.js'
 import LocationsList from './components/LocationsList.js'
-import { Marker } from 'react-google-maps'
 import './App.css'
 import MenuIcon from "./images/menu.svg";
-import MarkerIcon from "./images/marker.png";
+
 
 class App extends Component {
 
@@ -46,6 +45,20 @@ class App extends Component {
 
     this.makeMarkers = this.makeMarkers.bind(this)
     this.givenGeocoderRef = this.givenGeocoderRef.bind(this)
+    this.onClickHandler = this.onClickHandler.bind(this)
+
+  }
+
+  onClickHandler = (markerIndex) => {
+    let changedMarker = this.state.markersArray[markerIndex]
+    changedMarker.selected = !changedMarker.selected
+    this.setState((prevState) => ({markersArray: [...prevState.markersArray, ...{[markerIndex]:changedMarker}]}), () => {
+      setTimeout(() => {
+        let changedMarker = this.state.markersArray[markerIndex]
+        changedMarker.selected = !changedMarker.selected
+        this.setState((prevState) => ({markersArray: [...prevState.markersArray, ...{[markerIndex]:changedMarker}]}))
+      }, 2000)
+    })
   }
 
   toggleClass = () => {
@@ -66,23 +79,7 @@ class App extends Component {
                     let lat = results[0].geometry.location.lat()
                     let lng = results[0].geometry.location.lng()
                     var id = results[0].place_id
-
-                    var marker = <Marker
-                        key={id}
-                        title={location.title}
-                        icon={MarkerIcon}
-                        position={{lat: lat, lng: lng}}
-                        animation={localGoogle.maps.Animation.DROP}
-                        onClick={() => {
-                          console.log("Here now")
-                        }}
-                        clickable
-                        ref={this.markerRef}
-                    />
-                  // localGoogle.maps.event.addListener(marker, 'click', (function (marker) {
-                  //    console.log(marker)
-                  // }));
-
+                  
                     // fetch(`https://api.yelp.com/v3/businesses/${location.yelpId}`, {
                     //   method: 'GET',
                     //   mode: 'no-cors',
@@ -95,7 +92,7 @@ class App extends Component {
                     // .catch(error => console.error('Error:', error));
                     
                    this.setState((prevState) => {
-                       return {markersArray: [...prevState.markersArray, {marker:marker, title: location.title, shortTitle: location.shortTitle, markerRef }]}
+                       return {markersArray: [...prevState.markersArray, {shortTitle: location.shortTitle, title: location.title, lat: lat, lng: lng, id: id, selected: false }]}
 
                    })
                     //to be replaced by function in component below
@@ -137,6 +134,7 @@ class App extends Component {
           <LocationsList
             markersArray={this.state.markersArray}
             localGoogle={this.state.localGoogle}
+            clickHandler={this.onClickHandler}
           />
         </div>
       </div>

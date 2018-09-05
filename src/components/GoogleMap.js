@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { withScriptjs, withGoogleMap, GoogleMap} from 'react-google-maps'
+import { withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps'
 import { mapStyles } from './mapStyles.js'
+import MarkerIcon from "../images/marker.png";
 import './GoogleMap.scss'
 
 const LocationMap = withScriptjs(withGoogleMap((props, state) => {
@@ -17,8 +18,15 @@ const LocationMap = withScriptjs(withGoogleMap((props, state) => {
             styles: mapStyles
         }}
         >
-        {props.markersArray.map((marker) => {
-            return marker.marker
+        {props.markersArray.map((markerObject) => {
+            {console.log(markerObject.title, markerObject.selected)}
+           return (<Marker
+                key={markerObject.id}
+                title={markerObject.title}
+                icon={MarkerIcon}
+                position={{ lat : markerObject.lat, lng : markerObject.lng }}
+                animation={markerObject.selected ? google.maps.Animation.BOUNCE : google.maps.Animation.NONE}
+            />)
         })}
         </GoogleMap>
     )
