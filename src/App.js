@@ -52,12 +52,14 @@ class App extends Component {
   onClickHandler = (markerIndex) => {
     let changedMarker = this.state.markersArray[markerIndex]
     changedMarker.selected = !changedMarker.selected
+    //update spreading to add new infoWindowOpen - not get switched off after timeout. Only get set once 
+    // close icon clicked
     this.setState((prevState) => ({markersArray: [...prevState.markersArray, ...{[markerIndex]:changedMarker}]}), () => {
       setTimeout(() => {
         let changedMarker = this.state.markersArray[markerIndex]
         changedMarker.selected = !changedMarker.selected
         this.setState((prevState) => ({markersArray: [...prevState.markersArray, ...{[markerIndex]:changedMarker}]}))
-      }, 2000)
+      }, 1000)
     })
   }
 
@@ -129,6 +131,7 @@ class App extends Component {
             <MapContainer
               markersArray={this.state.markersArray}
               giveGeocodeRef={this.givenGeocoderRef}
+              clickHandler={this.onClickHandler}
             />
           </article>
           <LocationsList

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps'
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps'
 import { mapStyles } from './mapStyles.js'
 import MarkerIcon from "../images/marker.png";
 import './GoogleMap.scss'
@@ -18,15 +18,24 @@ const LocationMap = withScriptjs(withGoogleMap((props, state) => {
             styles: mapStyles
         }}
         >
-        {props.markersArray.map((markerObject) => {
+        {props.markersArray.map((markerObject,index) => {
             {console.log(markerObject.title, markerObject.selected)}
-           return (<Marker
-                key={markerObject.id}
-                title={markerObject.title}
-                icon={MarkerIcon}
-                position={{ lat : markerObject.lat, lng : markerObject.lng }}
-                animation={markerObject.selected ? google.maps.Animation.BOUNCE : google.maps.Animation.NONE}
-            />)
+           return (
+                <div>
+                    <Marker
+                        key={markerObject.id}
+                        title={markerObject.title}
+                        icon={MarkerIcon}
+                        position={{ lat : markerObject.lat, lng : markerObject.lng }}
+                        animation={markerObject.selected ? google.maps.Animation.BOUNCE : google.maps.Animation.NONE}
+                        onClick={() => props.clickHandler(index)}
+                    >
+                        {markerObject.selected && <InfoWindow>
+                            <p>{markerObject.title}</p>
+                        </InfoWindow>}
+                    </Marker>
+                </div>
+            )
         })}
         </GoogleMap>
     )
@@ -56,6 +65,7 @@ class MapContainer extends Component {
             containerElement={<div style={{ height: `100%` }} />}
             mapElement={<div style={{ height: `100%` }} />}
             giveGeocoderRef={this.givenGeocoderRef}
+            clickHandler = {this.props.clickHandler}
         />
     }
 }
