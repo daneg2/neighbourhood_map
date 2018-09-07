@@ -40,13 +40,21 @@ class App extends Component {
     this.state = {
       active: true,
       filteredLocations: this.locations,
-      markersArray: []
+      markersArray: [],
+      clickedIndex: 0
     };
 
     this.makeMarkers = this.makeMarkers.bind(this)
     this.givenGeocoderRef = this.givenGeocoderRef.bind(this)
     this.onClickHandler = this.onClickHandler.bind(this)
+    this.toggleClick = this.toggleClick.bind(this)
 
+  }
+
+  toggleClick = (index) => {
+    this.setState({
+      clickedIndex: index
+    })
   }
 
   onClickHandler = (markerIndex) => {
@@ -138,6 +146,7 @@ class App extends Component {
             markersArray={this.state.markersArray}
             localGoogle={this.state.localGoogle}
             clickHandler={this.onClickHandler}
+            clickToggle={this.toggleClick}
           />
         </div>
       </div>
