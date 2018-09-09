@@ -41,7 +41,7 @@ class App extends Component {
       active: true,
       filteredLocations: this.locations,
       markersArray: [],
-      clickedIndex: 0
+      clickedIndex: -1
     };
 
     this.makeMarkers = this.makeMarkers.bind(this)
@@ -141,6 +141,7 @@ class App extends Component {
               giveGeocodeRef={this.givenGeocoderRef}
               clickHandler={this.onClickHandler}
               clickedIndex={this.state.clickedIndex}
+              clickToggle={this.toggleClick}
             />
           </article>
           <LocationsList

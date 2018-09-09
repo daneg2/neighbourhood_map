@@ -28,9 +28,13 @@ const LocationMap = withScriptjs(withGoogleMap((props, state) => {
                         icon={MarkerIcon}
                         position={{ lat : markerObject.lat, lng : markerObject.lng }}
                         animation={markerObject.selected ? google.maps.Animation.BOUNCE : google.maps.Animation.NONE}
-                        onClick={() => props.clickHandler(index)}
+                        onClick={() => {
+                            props.clickHandler(index)
+                            props.clickToggle(index)
+                            }
+                        }
                     >
-                        {props.clickedIndex === index && <InfoWindow>
+                        {props.clickedIndex === index  && <InfoWindow>
                             <p>{markerObject.title}</p>
                         </InfoWindow>}
                     </Marker>
@@ -67,6 +71,7 @@ class MapContainer extends Component {
             giveGeocoderRef={this.givenGeocoderRef}
             clickHandler = {this.props.clickHandler}
             clickedIndex={this.props.clickedIndex}
+            clickToggle={this.props.clickToggle}
         />
     }
 }
