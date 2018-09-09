@@ -140,6 +140,7 @@ class App extends Component {
               markersArray={this.state.markersArray}
               giveGeocodeRef={this.givenGeocoderRef}
               clickHandler={this.onClickHandler}
+              clickedIndex={this.state.clickedIndex}
             />
           </article>
           <LocationsList
