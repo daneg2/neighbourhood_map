@@ -5,11 +5,8 @@ class Filter extends Component {
     render () {
         return (
             <div className="filter-container">
-                <label>
-                    Looking for something?
-                    <input type="text" placeholder="Search here" onChange={this.props.handleChange} />
-                </label>
-                {this.props.arrayLength <= 0 && <p>No results have been found.</p>}
+                <input type="text" placeholder="Filter locations" onChange={this.props.handleChange} />
+                {this.props.arrayLength <= 0 && <p>No locations have been found.</p>}
             </div>
         )
     }

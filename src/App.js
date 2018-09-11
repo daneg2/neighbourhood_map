@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MapContainer from './components/GoogleMap.js'
+import Filter from './components/Filter.js'
 import LocationsList from './components/LocationsList.js'
 import './App.css'
 import MenuIcon from "./images/menu.svg";
@@ -183,6 +184,10 @@ class App extends Component {
             >
               <img src={MenuIcon} alt="Open Menu" />
             </div>
+            <Filter 
+              handleChange={this.handleChange}
+              arrayLength={this.state.filteredLocations.length}
+            />
             <MapContainer
               markersArray={this.state.filteredLocations}
               giveGeocodeRef={this.givenGeocoderRef}
@@ -197,7 +202,7 @@ class App extends Component {
             localGoogle={this.state.localGoogle}
             clickHandler={this.onClickHandler}
             clickToggle={this.toggleClick}
-            handleChange={this.handleChange}
+            arrayLength={this.state.filteredLocations.length}
           />
         </div>
       </div>

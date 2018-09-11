@@ -1,3 +1,36 @@
 .filter-container {
-  text-align: center;
-  padding: 10px; }
+  background: white;
+  box-shadow: -1px 3px 5px -1px rgba(0, 0, 0, 0.31);
+  position: absolute;
+  z-index: 20;
+  left: 91px;
+  top: 25px;
+  width: 220px;
+  display: flex;
+  flex-direction: column; }
+  .filter-container input {
+    border: none;
+    padding: 15px;
+    color: black;
+    font-weight: 400;
+    font-family: 'Roboto';
+    letter-spacing: 1.25px;
+    font-size: 12px;
+    background: white; }
+    .filter-container input::placeholder {
+      color: black;
+      font-weight: 400;
+      font-family: 'Roboto';
+      letter-spacing: 1.25px;
+      font-size: 12px; }
+  .filter-container p {
+    color: black;
+    font-weight: 400;
+    font-family: 'Roboto';
+    letter-spacing: 1.25px;
+    font-size: 11px;
+    padding: 10px;
+    border-top: 1px solid #d0d8da;
+    margin: 0;
+    background: #fecf004d;
+    line-height: 20px; }

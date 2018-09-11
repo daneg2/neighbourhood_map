@@ -1,1 +1,5 @@
 /* Just use .gm-style-iw */
+.gm-style-iw {
+  width: 300px !important;
+  text-align: center;
+  text-transform: uppercase; }

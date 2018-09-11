@@ -2,22 +2,55 @@
     font-family: 'Roboto', sans-serif;
     src: url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700')
 }
+* {
+    font-family: 'Roboto', sans-serif;
+}
 
-.list {
-    ul {
+.list-container {
+    overflow-y: scroll;
+    background: white;
+    position: absolute;
+    width: 240px;
+    height: 100%;
+    z-index: 0;
+    .heading {
+        padding: 20px 10px 10px;
+        background: #fecf004d;
+        text-align: center;
+        h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        p {
+            font-size: 13px;
+            letter-spacing: 1px;
+            line-height: 17px;
+        }
+    }
+    .response {
+        padding: 20px;
+        font-weight: 600;
+        letter-spacing: 1.25px;
+        text-align: center
+    }
+    .list {
         list-style: none;
         margin: 0;
         padding: 0;
         li {
-            font-family: 'Roboto', sans-serif;
             padding: 15px 10px;
-            cursor: pointer;
-            text-transform: uppercase;
             font-weight: 600;
             letter-spacing: 2px;
             font-size: 14px;
             border-bottom: 2px solid #d0d8da;
             text-align: center;
+            &:hover {
+                color: white;
+                background: #0072bc;
+            }
         }
     }
 }

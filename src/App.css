@@ -36,13 +36,3 @@ body {
     display: none; }
   .map.open {
     transform: translate3d(240px, 0, 0); }
-
-.list {
-  background: white;
-  position: absolute;
-  width: 240px;
-  height: 100%;
-  z-index: 0; }
-
-.gm-style-iw {
-  width: 300px !important; }

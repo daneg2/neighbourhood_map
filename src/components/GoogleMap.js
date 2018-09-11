@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps'
 import { mapStyles } from './mapStyles.js'
 import MarkerIcon from "../images/marker.png";
-import './GoogleMap.scss'
+import './GoogleMap.css'
 
 const LocationMap = withScriptjs(withGoogleMap((props, state) => {
 

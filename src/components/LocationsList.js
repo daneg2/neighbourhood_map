@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import './LocationsList.css'
-import Filter from './Filter.js'
 
 class LocationsList extends Component {  
 
     render () {
         return (
-            <aside className="list">
-                <Filter 
-                    handleChange={this.props.handleChange}
-                    arrayLength={this.props.markersArray.length}
-                />
-                <ul>
+            <aside className="list-container">
+                <div className="heading">
+                    <h2>Daytripper in DC</h2>
+                    <p>All the must-see locations in Washington, DC when you don't have a lot of time.</p>
+                </div>
+                {this.props.arrayLength <= 0 && <p className="response">Oops! Seems like we couldn't find your location - try again!</p>}
+                <ul className="list">
                     {this.props.markersArray.map((location, index) => {
                         return (
                             // <li key={location.title} onClick={() => {this.props.localGoogle.maps.event.trigger(location.marker, 'click');}}>           
