@@ -10,29 +10,60 @@ class App extends Component {
   locations = [
     {
       title: 'National Portrait Gallery, Washington, DC, USA',
-      shortTitle: 'National Portrait Gallery',
-      yelpId: "KVcGvgj_p4rQmmAYOV14jA"
+      shortTitle: 'National Portrait Gallery'
+    },
+    {
+      title: 'National Mall, Washington, DC, USA',
+      shortTitle: 'National Mall'
+    },
+    {
+      title: 'Lincoln Memorial, 2 Lincoln Memorial Circle Northwest, Washington, DC, USA',
+      shortTitle: 'Lincoln Memorial'
+    },
+    {
+      title: 'Georgetown Waterfront Park, 3303 Water Street Northwest, Washington, DC, USA',
+      shortTitle: 'Georgetown Waterfront Park'
+    },
+    {
+      title: 'The Phillips Collection, 21st Street Northwest, Washington, DC, USA',
+      shortTitle: 'The Phillips Collection'
+    },
+    {
+      title: 'Busboys and Poets, 5th Street Northwest, Washington, DC, USA',
+      shortTitle: 'Busboys and Poets'
+    },
+    {
+      title: "Duke's Grocery, 17th Street Northwest, Washington, DC, USA",
+      shortTitle: "Duke's Grocery"
+    },
+    {
+      title: '9:30 Club, V Street Northwest, Washington, DC, USA',
+      shortTitle: '9:30 Club'
+    },
+    {
+      title: 'Roofers Union, 18th Street Northwest, Washington, DC, USA',
+      shortTitle: 'Roofers Union'
     },
     {
       title: 'Founding Farmers DC, Pennsylvania Avenue Northwest, Washington, DC, USA',
-      shortTitle: 'Founding Farmers DC',
-      yelpId: "VA8aPObRynlwR1TGzbzraQ"
+      shortTitle: 'Founding Farmers DC'
     },
     {
       title: 'Thomas Jefferson Memorial, East Basin Drive Southwest, Washington, DC, USA',
-      shortTitle: 'Thomas Jefferson Memorial',
-      yelpId: "iB4f8gZkUJICgrhyAoKa-w"
-    },
-    {
-      title: 'Georgetown Cupcake, M Street Northwest, Washington, DC, USA',
-      shortTitle: 'Georgetown Cupcake',
-      yelpId: "eaf-pRz8ulVF3UZe8nB2Xw"
-    },
-    {
-      title: 'Shenanigan’s Irish Pub, 18th Street Northwest, Washington, DC, USA',
-      shortTitle: 'Shenanigan’s Irish Pub',
-      yelpId: "4RoSn6IjCeqq4au4kma44Q"
+      shortTitle: 'Thomas Jefferson Memorial'
     }
+    // {
+    //   title: 'Georgetown Cupcake, M Street Northwest, Washington, DC, USA',
+    //   shortTitle: 'Georgetown Cupcake'
+    // },
+    // {
+    //   title: 'Rock Creek National Park, Washington, DC, USA',
+    //   shortTitle: 'Rock Creek National Park'
+    // },
+    // {
+    //   title: 'Shenanigan’s Irish Pub, 18th Street Northwest, Washington, DC, USA',
+    //   shortTitle: 'Shenanigan’s Irish Pub'
+    // }
   ]
 
   constructor(props) {
@@ -102,7 +133,7 @@ class App extends Component {
                     let lat = results[0].geometry.location.lat()
                     let lng = results[0].geometry.location.lng()
                     var id = results[0].place_id
-                  
+                    console.log('geocoding');
                     // fetch(`https://api.yelp.com/v3/businesses/${location.yelpId}`, {
                     //   method: 'GET',
                     //   mode: 'no-cors',

@@ -35,11 +35,14 @@ body {
   .map .gmnoprint {
     display: none; }
   .map.open {
-    transform: translate3d(260px, 0, 0); }
+    transform: translate3d(240px, 0, 0); }
 
 .list {
-  background: #eceeef;
+  background: white;
   position: absolute;
-  width: 220px;
+  width: 240px;
   height: 100%;
   z-index: 0; }
+
+.gm-style-iw {
+  width: 300px !important; }

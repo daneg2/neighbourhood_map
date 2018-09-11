@@ -20,7 +20,7 @@ const LocationMap = withScriptjs(withGoogleMap((props, state) => {
         >
         {props.markersArray.map((markerObject,index) => {
            return (
-                <div>
+                <div key={markerObject.id}>
                     <Marker
                         key={markerObject.id}
                         title={markerObject.title}

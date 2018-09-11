@@ -4,7 +4,7 @@ import './Filter.css'
 class Filter extends Component {  
     render () {
         return (
-            <div>
+            <div className="filter-container">
                 <label>
                     Looking for something?
                     <input type="text" placeholder="Search here" onChange={this.props.handleChange} />
