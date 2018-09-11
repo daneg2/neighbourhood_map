@@ -19,7 +19,6 @@ const LocationMap = withScriptjs(withGoogleMap((props, state) => {
         }}
         >
         {props.markersArray.map((markerObject,index) => {
-            {console.log(markerObject.title, markerObject.selected)}
            return (
                 <div>
                     <Marker
@@ -31,10 +30,11 @@ const LocationMap = withScriptjs(withGoogleMap((props, state) => {
                         onClick={() => {
                             props.clickHandler(index)
                             props.clickToggle(index)
+                            console.log(index)
                             }
                         }
-                    >
-                        {props.clickedIndex === index  && <InfoWindow>
+                    >  
+                        {props.clickedIndex === index  && <InfoWindow onCloseClick={props.closeWindow}>
                             <p>{markerObject.title}</p>
                         </InfoWindow>}
                     </Marker>
@@ -72,6 +72,7 @@ class MapContainer extends Component {
             clickHandler = {this.props.clickHandler}
             clickedIndex={this.props.clickedIndex}
             clickToggle={this.props.clickToggle}
+            closeWindow={this.props.closeWindow}
         />
     }
 }

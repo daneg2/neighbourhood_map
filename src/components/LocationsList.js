@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import './LocationsList.css'
+import Filter from './Filter.js'
 
 class LocationsList extends Component {  
 
     render () {
         return (
             <aside className="list">
+                <Filter 
+                    handleChange={this.props.handleChange}
+                    arrayLength={this.props.markersArray.length}
+                />
                 <ul>
                     {this.props.markersArray.map((location, index) => {
                         return (

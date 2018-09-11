@@ -41,12 +41,12 @@ body {
     display: none;
   }
   &.open {
-    transform: translate3d(220px, 0, 0);
+    transform: translate3d(260px, 0, 0);
   }
 }
 
 .list {
-  background: #ffffff;
+  background: #eceeef;
   position: absolute;
   width: 220px;
   height: 100%;

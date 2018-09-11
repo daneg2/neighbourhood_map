@@ -39,7 +39,7 @@ class App extends Component {
     super(props);
     this.state = {
       active: true,
-      filteredLocations: this.locations,
+      filteredLocations: [],
       markersArray: [],
       clickedIndex: -1
     };
@@ -48,7 +48,14 @@ class App extends Component {
     this.givenGeocoderRef = this.givenGeocoderRef.bind(this)
     this.onClickHandler = this.onClickHandler.bind(this)
     this.toggleClick = this.toggleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.closeWindow = this.closeWindow.bind(this)
+  }
 
+  closeWindow = () => {
+    this.setState({
+      clickedIndex: -1
+    })
   }
 
   toggleClick = (index) => {
@@ -58,16 +65,24 @@ class App extends Component {
   }
 
   onClickHandler = (markerIndex) => {
-    let changedMarker = this.state.markersArray[markerIndex]
+    let changedMarker = this.state.filteredLocations[markerIndex]
     changedMarker.selected = !changedMarker.selected
     //update spreading to add new infoWindowOpen - not get switched off after timeout. Only get set once 
     // close icon clicked
-    this.setState((prevState) => ({markersArray: [...prevState.markersArray, ...{[markerIndex]:changedMarker}]}), () => {
+    this.setState((prevState) => ({filteredLocations: [...prevState.filteredLocations, ...{[markerIndex]:changedMarker}]}), () => {
       setTimeout(() => {
-        let changedMarker = this.state.markersArray[markerIndex]
+        let changedMarker = this.state.filteredLocations[markerIndex]
         changedMarker.selected = !changedMarker.selected
-        this.setState((prevState) => ({markersArray: [...prevState.markersArray, ...{[markerIndex]:changedMarker}]}))
+        this.setState((prevState) => ({filteredLocations: [...prevState.filteredLocations, ...{[markerIndex]:changedMarker}]}))
       }, 1000)
+    })
+  }
+
+  handleChange(event) {
+    let filteredLocations = this.state.markersArray.filter((marker) => (marker.title.toLowerCase()).indexOf(event.target.value.toLowerCase()) > -1)
+
+    this.setState({
+      filteredLocations
     })
   }
 
@@ -79,10 +94,8 @@ class App extends Component {
     const { localGoogle } = this.state
 
     let geocoder = new localGoogle.maps.Geocoder();
-    let markerRef = React.createRef()
 
-    locationsLatLng.map((location) => {
-        
+    locationsLatLng.map((location) => {   
         geocoder.geocode(
             { address: location.title }, (results, status) => {
                 if (status === localGoogle.maps.GeocoderStatus.OK) {
@@ -103,7 +116,10 @@ class App extends Component {
                     
                    this.setState((prevState) => {
                        return {markersArray: [...prevState.markersArray, {shortTitle: location.shortTitle, title: location.title, lat: lat, lng: lng, id: id, selected: false }]}
-
+                   }, () => {
+                    this.setState({
+                      filteredLocations: this.state.markersArray
+                    })
                    })
                     //to be replaced by function in component below
 
@@ -137,18 +153,20 @@ class App extends Component {
               <img src={MenuIcon} alt="Open Menu" />
             </div>
             <MapContainer
-              markersArray={this.state.markersArray}
+              markersArray={this.state.filteredLocations}
               giveGeocodeRef={this.givenGeocoderRef}
               clickHandler={this.onClickHandler}
               clickedIndex={this.state.clickedIndex}
               clickToggle={this.toggleClick}
+              closeWindow={this.closeWindow}
             />
           </article>
           <LocationsList
-            markersArray={this.state.markersArray}
+            markersArray={this.state.filteredLocations}
             localGoogle={this.state.localGoogle}
             clickHandler={this.onClickHandler}
             clickToggle={this.toggleClick}
+            handleChange={this.handleChange}
           />
         </div>
       </div>
