@@ -8,7 +8,7 @@ class LocationsList extends Component {
             <aside className="list-container">
                 <div className="heading">
                     <h2>Daytripper in DC</h2>
-                    <p>All the must-see locations in Washington, DC when you don't have a lot of time.</p>
+                    <p>All the must-see locations in Washington, DC for when you don't have a lot of time.</p>
                 </div>
                 {this.props.arrayLength <= 0 && <p className="response">Oops! Seems like we couldn't find your location - try again!</p>}
                 <ul className="list">

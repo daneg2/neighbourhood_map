@@ -9,39 +9,50 @@
   overflow-y: scroll;
   background: white;
   position: absolute;
-  width: 240px;
+  width: 300px;
   height: 100%;
   z-index: 0; }
   .list-container .heading {
-    padding: 20px 10px 10px;
-    background: #fecf004d;
+    padding: 35px 17px 17px;
+    background: #f4f0d3;
     text-align: center; }
     .list-container .heading h2 {
       margin: 0;
-      font-size: 18px;
+      font-size: 24px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 2px; }
+      letter-spacing: 2px;
+      color: #dab44e; }
     .list-container .heading p {
       font-size: 13px;
       letter-spacing: 1px;
       line-height: 17px; }
   .list-container .response {
     padding: 20px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 1.25px;
-    text-align: center; }
+    text-align: center;
+    color: #797979; }
   .list-container .list {
     list-style: none;
     margin: 0;
-    padding: 0; }
+    padding: 0;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
     .list-container .list li {
+      cursor: pointer;
       padding: 15px 10px;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 2px;
       font-size: 14px;
-      border-bottom: 2px solid #d0d8da;
-      text-align: center; }
+      text-align: center;
+      border-radius: 5px;
+      color: #797979;
+      border: 2px solid #0072bc;
+      margin-top: 10px;
+      width: 240px; }
       .list-container .list li:hover {
         color: white;
         background: #0072bc; }

@@ -70,7 +70,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: true,
+      active: false,
       filteredLocations: [],
       markersArray: [],
       clickedIndex: -1
@@ -178,24 +178,30 @@ class App extends Component {
       <div className="App">
         <div className="wrapper">
           <article className={`map ${this.state.active ? 'open' : ''}`}>
-            <div
+            <button
               className="logo-wrapper"
-              onClick={this.toggleClass}
+              onClick={this.toggleClass} 
+              aria-haspopup="true"
+              aria-label="Toggle Primary Menu"
+              aria-controls="aside"
+              tabIndex = {0}
             >
               <img src={MenuIcon} alt="Open Menu" />
-            </div>
+            </button>
             <Filter 
               handleChange={this.handleChange}
               arrayLength={this.state.filteredLocations.length}
             />
-            <MapContainer
-              markersArray={this.state.filteredLocations}
-              giveGeocodeRef={this.givenGeocoderRef}
-              clickHandler={this.onClickHandler}
-              clickedIndex={this.state.clickedIndex}
-              clickToggle={this.toggleClick}
-              closeWindow={this.closeWindow}
-            />
+            <div className="map-container" tabIndex={0} role="application" aria-label="Google Map of Washington, DC">
+              <MapContainer
+                markersArray={this.state.filteredLocations}
+                giveGeocodeRef={this.givenGeocoderRef}
+                clickHandler={this.onClickHandler}
+                clickedIndex={this.state.clickedIndex}
+                clickToggle={this.toggleClick}
+                closeWindow={this.closeWindow}
+              />
+            </div>
           </article>
           <LocationsList
             markersArray={this.state.filteredLocations}

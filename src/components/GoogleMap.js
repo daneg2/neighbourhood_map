@@ -19,8 +19,8 @@ const LocationMap = withScriptjs(withGoogleMap((props, state) => {
         }}
         >
         {props.markersArray.map((markerObject,index) => {
-           return (
-                <div key={markerObject.id}>
+        return (
+                <div className="marker-wrapper" tabIndex={0} aria-label={markerObject.title}>
                     <Marker
                         key={markerObject.id}
                         title={markerObject.title}

@@ -5,26 +5,28 @@
   z-index: 20;
   left: 91px;
   top: 25px;
-  width: 220px;
   display: flex;
   flex-direction: column; }
   .filter-container input {
     border: none;
     padding: 15px;
-    color: black;
+    color: #797979;
     font-weight: 400;
     font-family: 'Roboto';
     letter-spacing: 1.25px;
-    font-size: 12px;
-    background: white; }
+    font-size: 14px;
+    background: white;
+    width: 300px;
+    border-radius: 5px;
+    border: 2px solid #0072bc; }
     .filter-container input::placeholder {
-      color: black;
+      color: #797979;
       font-weight: 400;
       font-family: 'Roboto';
       letter-spacing: 1.25px;
-      font-size: 12px; }
+      font-size: 14px; }
   .filter-container p {
-    color: black;
+    color: #797979;
     font-weight: 400;
     font-family: 'Roboto';
     letter-spacing: 1.25px;
@@ -32,5 +34,6 @@
     padding: 10px;
     border-top: 1px solid #d0d8da;
     margin: 0;
-    background: #fecf004d;
-    line-height: 20px; }
+    background: #f4f0d3;
+    line-height: 20px;
+    border-radius: 5px; }

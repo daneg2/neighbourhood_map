@@ -12,11 +12,11 @@ body {
 }
 
 .logo-wrapper {
-  background: #fecf00;
+  background: #f1c609;
   border-radius: 50%;
   position: relative;
-  width: 35px;
-  height: 35px;
+  width: 67px;
+  height: 67px;
   padding: 15px;
   position: absolute;
   top: 15px;
@@ -24,6 +24,7 @@ body {
   z-index: 2;
   box-shadow: 0 2px 8px 0 rgba(0,0,0,.26);
   cursor: pointer;
+  border: none;
   img {
     height: auto;
     width: 100%;
@@ -41,8 +42,12 @@ body {
     display: none;
   }
   &.open {
-    transform: translate3d(240px, 0, 0);
+    transform: translate3d(300px, 0, 0);
   }
+}
+
+.map-container {
+  height: 100%;
 }
 
 
