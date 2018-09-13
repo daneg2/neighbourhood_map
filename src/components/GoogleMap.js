@@ -20,25 +20,22 @@ const LocationMap = withScriptjs(withGoogleMap((props, state) => {
         >
         {props.markersArray.map((markerObject,index) => {
         return (
-                // <div className="marker-wrapper" tabIndex={0} aria-label={markerObject.title}>
-                    <Marker
-                        key={markerObject.id}
-                        title={markerObject.title}
-                        icon={MarkerIcon}
-                        position={{ lat : markerObject.lat, lng : markerObject.lng }}
-                        animation={markerObject.selected ? google.maps.Animation.BOUNCE : google.maps.Animation.NONE}
-                        onClick={() => {
-                            props.clickHandler(index)
-                            props.clickToggle(index)
-                            console.log(index)
-                            }
+                <Marker
+                    key={markerObject.id}
+                    title={markerObject.title}
+                    icon={MarkerIcon}
+                    position={{ lat : markerObject.lat, lng : markerObject.lng }}
+                    animation={markerObject.selected ? google.maps.Animation.BOUNCE : google.maps.Animation.NONE}
+                    onClick={() => {
+                        props.clickHandler(index)
+                        props.clickToggle(index)
                         }
-                    >  
-                        {props.clickedIndex === index  && <InfoWindow onCloseClick={props.closeWindow}>
-                            <p tabIndex={0} id={markerObject.id}>Found me!{markerObject.title}</p>
-                        </InfoWindow>}
-                    </Marker>
-                // </div>
+                    }
+                >  
+                    {props.clickedIndex === index  && <InfoWindow onCloseClick={props.closeWindow}>
+                        <p tabIndex={0} id={markerObject.id}>{markerObject.title}</p>
+                    </InfoWindow>}
+                </Marker>
             )
         })}
         </GoogleMap>

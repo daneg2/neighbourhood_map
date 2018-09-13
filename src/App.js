@@ -11,48 +11,73 @@ class App extends Component {
   locations = [
     {
       title: 'National Portrait Gallery, Washington, DC, USA',
-      shortTitle: 'National Portrait Gallery'
-    },
-    {
-      title: 'National Mall, Washington, DC, USA',
-      shortTitle: 'National Mall'
-    },
-    {
-      title: 'Lincoln Memorial, 2 Lincoln Memorial Circle Northwest, Washington, DC, USA',
-      shortTitle: 'Lincoln Memorial'
-    },
-    {
-      title: 'Georgetown Waterfront Park, 3303 Water Street Northwest, Washington, DC, USA',
-      shortTitle: 'Georgetown Waterfront Park'
-    },
-    {
-      title: 'The Phillips Collection, 21st Street Northwest, Washington, DC, USA',
-      shortTitle: 'The Phillips Collection'
-    },
-    {
-      title: 'Busboys and Poets, 5th Street Northwest, Washington, DC, USA',
-      shortTitle: 'Busboys and Poets'
-    },
-    {
-      title: "Duke's Grocery, 17th Street Northwest, Washington, DC, USA",
-      shortTitle: "Duke's Grocery"
-    },
-    {
-      title: '9:30 Club, V Street Northwest, Washington, DC, USA',
-      shortTitle: '9:30 Club'
-    },
-    {
-      title: 'Roofers Union, 18th Street Northwest, Washington, DC, USA',
-      shortTitle: 'Roofers Union'
+      shortTitle: 'National Portrait Gallery',
+      fourSqId: "49fb25a6f964a520196e1fe3"
     },
     {
       title: 'Founding Farmers DC, Pennsylvania Avenue Northwest, Washington, DC, USA',
-      shortTitle: 'Founding Farmers DC'
+      shortTitle: 'Founding Farmers DC',
+      fourSqId: "4a469855f964a5202aa91fe3"
     },
     {
       title: 'Thomas Jefferson Memorial, East Basin Drive Southwest, Washington, DC, USA',
-      shortTitle: 'Thomas Jefferson Memorial'
+      shortTitle: 'Thomas Jefferson Memorial',
+      fourSqId: "4a106621f964a520ba761fe3"
+    },
+    {
+      title: 'Georgetown Cupcake, M Street Northwest, Washington, DC, USA',
+      shortTitle: 'Georgetown Cupcake',
+      fourSqId: "4b509bc7f964a520442927e3"
+    },
+    {
+      title: 'Shenanigan’s Irish Pub, 18th Street Northwest, Washington, DC, USA',
+      shortTitle: 'Shenanigan’s Irish Pub',
+      fourSqId: "513a9d88e4b0dcaa86f3b270"
     }
+    // {
+    //   title: 'National Portrait Gallery, Washington, DC, USA',
+    //   shortTitle: 'National Portrait Gallery'
+    // },
+    // {
+    //   title: 'National Mall, Washington, DC, USA',
+    //   shortTitle: 'National Mall'
+    // },
+    // {
+    //   title: 'Lincoln Memorial, 2 Lincoln Memorial Circle Northwest, Washington, DC, USA',
+    //   shortTitle: 'Lincoln Memorial'
+    // },
+    // {
+    //   title: 'Georgetown Waterfront Park, 3303 Water Street Northwest, Washington, DC, USA',
+    //   shortTitle: 'Georgetown Waterfront Park'
+    // },
+    // {
+    //   title: 'The Phillips Collection, 21st Street Northwest, Washington, DC, USA',
+    //   shortTitle: 'The Phillips Collection'
+    // },
+    // {
+    //   title: 'Busboys and Poets, 5th Street Northwest, Washington, DC, USA',
+    //   shortTitle: 'Busboys and Poets'
+    // },
+    // {
+    //   title: "Duke's Grocery, 17th Street Northwest, Washington, DC, USA",
+    //   shortTitle: "Duke's Grocery"
+    // },
+    // {
+    //   title: '9:30 Club, V Street Northwest, Washington, DC, USA',
+    //   shortTitle: '9:30 Club'
+    // },
+    // {
+    //   title: 'Roofers Union, 18th Street Northwest, Washington, DC, USA',
+    //   shortTitle: 'Roofers Union'
+    // },
+    // {
+    //   title: 'Founding Farmers DC, Pennsylvania Avenue Northwest, Washington, DC, USA',
+    //   shortTitle: 'Founding Farmers DC'
+    // },
+    // {
+    //   title: 'Thomas Jefferson Memorial, East Basin Drive Southwest, Washington, DC, USA',
+    //   shortTitle: 'Thomas Jefferson Memorial'
+    // }
     // {
     //   title: 'Georgetown Cupcake, M Street Northwest, Washington, DC, USA',
     //   shortTitle: 'Georgetown Cupcake'
@@ -76,15 +101,6 @@ class App extends Component {
       clickedIndex: -1,
       focusElement: {}
     };
-
-    this.makeMarkers = this.makeMarkers.bind(this)
-    this.givenGeocoderRef = this.givenGeocoderRef.bind(this)
-    this.onClickHandler = this.onClickHandler.bind(this)
-    this.toggleClick = this.toggleClick.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.closeWindow = this.closeWindow.bind(this)
-    this.getRef =  this.getRef.bind(this)
-    this.focusRef = this.focusRef.bind(this)
   }
 
   closeWindow = () => {
@@ -105,9 +121,8 @@ class App extends Component {
     })
   }
 
-  focusRef = () => {
-    this.state.focusElement.current.focus()
-  }
+  focusRef = () => this.state.focusElement.current.focus()
+  
 
   onClickHandler = (markerIndex) => {
     let changedMarker = this.state.filteredLocations[markerIndex]
@@ -123,7 +138,7 @@ class App extends Component {
     })
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     let filteredLocations = this.state.markersArray.filter((marker) => (marker.title.toLowerCase()).indexOf(event.target.value.toLowerCase()) > -1)
 
     this.setState({
@@ -149,17 +164,11 @@ class App extends Component {
                     let lat = results[0].geometry.location.lat()
                     let lng = results[0].geometry.location.lng()
                     var id = results[0].place_id
-                    console.log('geocoding');
-                    // fetch(`https://api.yelp.com/v3/businesses/${location.yelpId}`, {
-                    //   method: 'GET',
-                    //   mode: 'no-cors',
-                    //   headers:{
-                    //     'Access-Control-Allow-Origin': '*',
-                    //     'Authorization': 'Bearer 8eFFaiHW7i2XiYnjfgmMME4JLpoaXAtPj7k0g-d0xZd6D-SFJylRH2I9swLh8fq-O8VuyRZJK61bjydzMpNku7Q4SGYK8g7HNJrCUsS-Bc9ECMHlALdb7O9H-sV-W3Yx'
-                    //   }
-                    // })//.then(res => res.json())
-                    // .then(response => console.log('Success:', response))
-                    // .catch(error => console.error('Error:', error));
+                    fetch(`https://api.foursquare.com/v2/venues/${location.fourSqId}?client_id=WZ3MLQ44JEPF2ODUCOJDJD2YI1CTD2CWRIHH53LRLTD3XDME&client_secret=MPWM4RG1SMUCQ51LAXVD3BCZR0NJENXBMCAIEYORTX3EFWQE&v=20180901`, {
+                      method: 'GET',
+                    }).then(res => res.json())
+                    .then(response => console.log('Success:', response))
+                    .catch(error => console.error('Error:', error));
                     
                    this.setState((prevState) => {
                        return {markersArray: [...prevState.markersArray, {shortTitle: location.shortTitle, title: location.title, lat: lat, lng: lng, id: id, selected: false }]}
