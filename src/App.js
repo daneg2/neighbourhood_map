@@ -73,7 +73,8 @@ class App extends Component {
       active: false,
       filteredLocations: [],
       markersArray: [],
-      clickedIndex: -1
+      clickedIndex: -1,
+      focusElement: {}
     };
 
     this.makeMarkers = this.makeMarkers.bind(this)
@@ -82,6 +83,8 @@ class App extends Component {
     this.toggleClick = this.toggleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.closeWindow = this.closeWindow.bind(this)
+    this.getRef =  this.getRef.bind(this)
+    this.focusRef = this.focusRef.bind(this)
   }
 
   closeWindow = () => {
@@ -94,6 +97,16 @@ class App extends Component {
     this.setState({
       clickedIndex: index
     })
+  }
+
+  getRef = (elementRef) => {
+    this.setState({
+      focusElement: elementRef
+    })
+  }
+
+  focusRef = () => {
+    this.state.focusElement.current.focus()
   }
 
   onClickHandler = (markerIndex) => {
@@ -119,7 +132,9 @@ class App extends Component {
   }
 
   toggleClass = () => {
+    !this.state.active && this.focusRef()
     this.setState({ active: !this.state.active })
+   
   };
 
   makeMarkers = (locationsLatLng) => {
@@ -177,7 +192,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="wrapper">
-          <article className={`map ${this.state.active ? 'open' : ''}`}>
+          <article role="main" className={`map ${this.state.active ? 'open' : ''}`}>
             <button
               className="logo-wrapper"
               onClick={this.toggleClass} 
@@ -186,7 +201,7 @@ class App extends Component {
               aria-controls="aside"
               tabIndex = {0}
             >
-              <img src={MenuIcon} alt="Open Menu" />
+              <img src={MenuIcon} alt="Toggle Primary Menu" />
             </button>
             <Filter 
               handleChange={this.handleChange}
@@ -209,6 +224,8 @@ class App extends Component {
             clickHandler={this.onClickHandler}
             clickToggle={this.toggleClick}
             arrayLength={this.state.filteredLocations.length}
+            getRef={this.getRef}
+            activeMenu={this.state.active}
           />
         </div>
       </div>

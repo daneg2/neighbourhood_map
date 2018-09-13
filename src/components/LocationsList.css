@@ -12,6 +12,8 @@
   width: 300px;
   height: 100%;
   z-index: 0; }
+  .list-container:focus {
+    background: black; }
   .list-container .heading {
     padding: 35px 17px 17px;
     background: #f4f0d3;
