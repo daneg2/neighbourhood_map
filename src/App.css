@@ -12,12 +12,12 @@ body {
   background: #f1c609;
   border-radius: 50%;
   position: relative;
-  width: 67px;
-  height: 67px;
+  width: 55px;
+  height: 55px;
   padding: 15px;
   position: absolute;
   top: 15px;
-  left: 15px;
+  left: 10px;
   z-index: 2;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.26);
   cursor: pointer;
@@ -26,17 +26,20 @@ body {
     height: auto;
     width: 100%; }
 
-.map {
+article {
   flex: 1;
   background: #eee;
   box-shadow: 0 0 5px black;
   transform: translate3d(0, 0, 0);
   transition: transform .4s;
   z-index: 2; }
-  .map .gmnoprint {
+  article .gmnoprint {
     display: none; }
-  .map.open {
-    transform: translate3d(300px, 0, 0); }
+  article.open {
+    transform: translate3d(250px, 0, 0); }
+    @media screen and (min-width: 768px) {
+      article.open {
+        transform: translate3d(300px, 0, 0); } }
 
 .map-container {
   height: 100%; }

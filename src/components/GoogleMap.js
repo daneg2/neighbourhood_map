@@ -4,10 +4,11 @@ import { mapStyles } from './mapStyles.js'
 import MarkerIcon from "../images/marker.png";
 import './GoogleMap.css'
 
+//react-google-maps wrapper to create Map
 const LocationMap = withScriptjs(withGoogleMap((props, state) => {
 
     const google = window.google;
-   
+    //pass google object up to parent components
     props.giveGeocoderRef(google)
 
     return (
@@ -18,6 +19,7 @@ const LocationMap = withScriptjs(withGoogleMap((props, state) => {
             styles: mapStyles
         }}
         >
+        {/* Map through markers array to create markers with custom icon and associated infowindwos */}
         {props.markersArray.map((markerObject,index) => {
         return (
                 <Marker
@@ -25,15 +27,24 @@ const LocationMap = withScriptjs(withGoogleMap((props, state) => {
                     title={markerObject.title}
                     icon={MarkerIcon}
                     position={{ lat : markerObject.lat, lng : markerObject.lng }}
+                    // Determine whether to animate marker based on select in marker object
                     animation={markerObject.selected ? google.maps.Animation.BOUNCE : google.maps.Animation.NONE}
+                     // Handle on click - pass index up to parent component
                     onClick={() => {
                         props.clickHandler(index)
                         props.clickToggle(index)
                         }
                     }
                 >  
+                    {/* If indexes match, display Infowindow */}
                     {props.clickedIndex === index  && <InfoWindow onCloseClick={props.closeWindow}>
-                        <p tabIndex={0} id={markerObject.id}>{markerObject.title}</p>
+                        <div className="info-content" tabIndex={0}>
+                            <h2>{markerObject.shortTitle}</h2>
+                            <p>Description: <span>{markerObject.description}</span></p>
+                            <p>Opening hours: <span>{markerObject.openHours}</span></p>
+                            <p>Rating: <span>{markerObject.rating}</span></p>
+                            <p>Contact Number: <span>{markerObject.contactNumber}</span></p>
+                        </div>
                     </InfoWindow>}
                 </Marker>
             )
@@ -42,20 +53,18 @@ const LocationMap = withScriptjs(withGoogleMap((props, state) => {
     )
 }))
 
+//Map wrapper
 class MapContainer extends Component {  
     constructor(props) {
         super(props);
         this.state = {
             markersArray: []
         }
-        this.givenGeocoderRef = this.givenGeocoderRef.bind(this)
     }
 
+    //Pass up google value to parent component
     givenGeocoderRef = (google) => {
         this.props.giveGeocodeRef(google)
-        if (!this.state.localGoogle) {
-            this.setState({localGoogle: google})
-        }
     }
 
     render () {

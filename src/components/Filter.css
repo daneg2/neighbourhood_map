@@ -4,7 +4,7 @@
   position: absolute;
   z-index: 20;
   left: 91px;
-  top: 25px;
+  top: 18px;
   display: flex;
   flex-direction: column; }
   .filter-container input {
@@ -16,7 +16,7 @@
     letter-spacing: 1.25px;
     font-size: 14px;
     background: white;
-    width: 300px;
+    width: 200px;
     border-radius: 5px;
     border: 2px solid #0072bc; }
     .filter-container input::placeholder {
@@ -25,6 +25,9 @@
       font-family: 'Roboto';
       letter-spacing: 1.25px;
       font-size: 14px; }
+    @media screen and (min-width: 768px) {
+      .filter-container input {
+        width: 300px; } }
   .filter-container p {
     color: #797979;
     font-weight: 400;

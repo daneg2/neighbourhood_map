@@ -1,6 +1,29 @@
 /* Just use .gm-style-iw */
 .gm-style-iw {
-    width: 300px !important; 
-    text-align: center;
-    text-transform: uppercase;
+    width: 250px !important; 
+    text-align: left;
+    @media screen and (min-width: 768px) {
+        width: 300px !important; 
+    }
+    .info-content {
+        max-width: 100%;
+        h2 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.25px;
+            font-weight: 600;
+            color: #dab44e;
+        }
+        p {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.25px;
+            font-weight: 500;
+            color: #797979;
+            span {
+                text-transform: capitalize;
+                font-weight: 400;
+            }
+        }
+    }
 }   

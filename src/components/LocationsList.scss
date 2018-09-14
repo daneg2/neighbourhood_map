@@ -10,11 +10,11 @@
     overflow-y: scroll;
     background: white;
     position: absolute;
-    width: 300px;
+    width: 250px;
     height: 100%;
     z-index: 0;
-    &:focus {
-        background: black;
+    @media screen and (min-width: 768px) {
+        width: 300px;
     }
     .heading {
         padding: 35px 17px 17px;
@@ -32,6 +32,7 @@
             font-size: 13px;
             letter-spacing: 1px;
             line-height: 17px;
+            color: #797979;
         }
     }
     .response {
@@ -61,8 +62,11 @@
             color: #797979;
             border: 2px solid #0072bc;
             margin-top: 10px;
-            width: 240px;
-            &:hover {
+            width: 210px;
+            @media screen and (min-width: 768px) {
+                width: 240px;
+            }
+            &:hover, &:focus {
                 color: white;
                 background: #0072bc;
             }
